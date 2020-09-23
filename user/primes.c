@@ -3,6 +3,7 @@
 
 void sieve(int pd[2]) {
     int p;
+    //先判断有没有数据，有再创建子进程进行进一步筛选
     if (read(pd[0], &p, sizeof(p)) != 0) {
         printf("prime %d\n", p);
     }
@@ -58,6 +59,7 @@ int main()
         }
         //虽然exit时会自动关闭，但不关闭子进程就会阻塞在read不会退出
         //所以在这里需要主动关闭
+        //ps:pipe关闭写端，读端不影响，读完全部数据再读时返回0，若不关闭则阻塞
         close(pd[1]);
         wait(0);
     }
