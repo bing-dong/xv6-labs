@@ -16,14 +16,14 @@ int main(int argc, char**argv) {
         close(rpipe[0]);
         if (read(wpipe[0], buf, 1) == 1) {
             fprintf(1, "%d: received ping\n", getpid());
-            write(rpipe[1], buf, 1);
+            write(rpipe[1], "c", 1);
         }
     }
     else {
         close(wpipe[0]);
         close(rpipe[1]);
 
-        write(wpipe[1], buf, 1);
+        write(wpipe[1], "c", 1);
         if (read(rpipe[0], buf, 1) == 1) {
             fprintf(1, "%d: received pong\n", getpid());
         close(rpipe[0]);
