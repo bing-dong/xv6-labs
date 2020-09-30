@@ -167,8 +167,7 @@ syscall(void)
     p->trapframe->a0 = syscalls[num]();
 
     // trace code
-    printf("args: %d\n", p->trapframe->a6);
-    if (p->trapframe->a6 & (1 << num))
+    if (p->trace_mask & (1 << num))
       printf("%d: syscall %s -> %d\n", p->pid, syscallname[num], p->trapframe->a0);
 
   } else {

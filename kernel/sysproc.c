@@ -103,8 +103,8 @@ uint64 sys_trace(void)
 
     if(argint(0, &n) < 0)
       return -1;
-    // printf("args: %d\n", n);
-    p->trapframe->a6 = n;
+    
+    p->trace_mask = n;
     
     return 0;
 }
