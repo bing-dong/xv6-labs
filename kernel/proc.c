@@ -280,6 +280,9 @@ fork(void)
   // copy saved user registers.
   *(np->trapframe) = *(p->trapframe);
 
+  // save exec args
+  // np->trapframe->a0 = p->trapframe->a0;
+
   // Cause fork to return 0 in the child.
   np->trapframe->a0 = 0;
 
