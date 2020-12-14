@@ -31,7 +31,7 @@ void find(char *dir, char *filename)
 
     //read目录，每次返回一个目录项
     while (read(fd, &diren, sizeof(diren)) == sizeof(diren)) {
-        //diren.inum不可忽视
+        // dirent is free if inum is zero
         if (diren.inum == 0 || strcmp(".", diren.name) == 0 || strcmp("..", diren.name) == 0) {
             continue;
         }
